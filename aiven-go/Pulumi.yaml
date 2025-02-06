@@ -1,9 +1,0 @@
-name: ${PROJECT}
-description: ${DESCRIPTION}
-runtime: go
-template:
-  description: A minimal Aiven Go Pulumi program
-  config:
-    aiven:apiToken:
-      description: The token that allows you access to your Aiven account
-      secret: true

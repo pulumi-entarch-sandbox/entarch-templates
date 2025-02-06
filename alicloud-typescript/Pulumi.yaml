@@ -1,9 +1,0 @@
-name: ${PROJECT}
-description: ${DESCRIPTION}
-runtime: nodejs
-template:
-  description: A minimal AliCloud TypeScript Pulumi program
-  config:
-    alicloud:region:
-      description: The AliCloud region to deploy into
-      default: cn-beijing

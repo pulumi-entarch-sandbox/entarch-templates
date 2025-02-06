@@ -1,9 +1,0 @@
-name: ${PROJECT}
-description: ${DESCRIPTION}
-runtime: go
-template:
-  description: A Go program to deploy a Helm chart onto a Kubernetes cluster
-  config:
-    k8sNamespace:
-      default: nginx-ingress
-      description: The Kubernetes namespace to deploy into
