@@ -1,6 +1,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as awsx from "@pulumi/awsx";
 import * as eks from "@pulumi/eks";
+import * as pulumiservice from "@pulumi/pulumiservice";
 
 // Grab some values from the Pulumi configuration (or use default values)
 const config = new pulumi.Config();
@@ -41,3 +42,18 @@ const eksCluster = new eks.Cluster("eks-cluster", {
 // Export some values for use elsewhere
 export const kubeconfig = eksCluster.kubeconfig;
 export const vpcId = eksVpc.vpcId;
+
+const hoursToAdd = 8;
+const expirationTime = new Date(Date.now() + hoursToAdd * 60 * 60 * 1000).toISOString().slice(0, -7) + "00Z";
+
+new pulumiservice.TtlSchedule(
+    `${pulumi.getProject()}-ttlschedule`,
+    {
+        organization: pulumi.getOrganization(),
+        project: pulumi.getProject(),
+        stack: pulumi.getStack(),
+        timestamp: expirationTime,
+        deleteAfterDestroy: false,
+    },
+    { ignoreChanges: ["timestamp"], retainOnDelete: true },
+);

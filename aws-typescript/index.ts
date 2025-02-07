@@ -26,15 +26,3 @@ new pulumiservice.TtlSchedule(
     },
     { ignoreChanges: ["timestamp"], retainOnDelete: true },
 );
-
-new pulumiservice.TeamStackPermission(
-    `${pulumi.getProject()}-${pulumiStackTeam}-team-stack-assign`,
-    {
-        organization: pulumi.getOrganization(),
-        project: pulumi.getProject(),
-        stack: pulumi.getStack(),
-        team: pulumiStackTeam,
-        permission: pulumiservice.TeamStackPermissionScope.Admin,
-    },
-    { retainOnDelete: true },
-);

@@ -1,5 +1,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
+import * as pulumiservice from "@pulumi/pulumiservice";
 
 // Get some configuration values or set default values.
 const config = new pulumi.Config();
@@ -89,3 +90,18 @@ const server = new aws.ec2.Instance("server", {
 export const ip = server.publicIp;
 export const hostname = server.publicDns;
 export const url = pulumi.interpolate`http://${server.publicDns}`;
+
+const hoursToAdd = 8;
+const expirationTime = new Date(Date.now() + hoursToAdd * 60 * 60 * 1000).toISOString().slice(0, -7) + "00Z";
+
+new pulumiservice.TtlSchedule(
+    `${pulumi.getProject()}-ttlschedule`,
+    {
+        organization: pulumi.getOrganization(),
+        project: pulumi.getProject(),
+        stack: pulumi.getStack(),
+        timestamp: expirationTime,
+        deleteAfterDestroy: false,
+    },
+    { ignoreChanges: ["timestamp"], retainOnDelete: true },
+);
