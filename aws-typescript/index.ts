@@ -16,7 +16,7 @@ const hoursToAdd = 8;
 const expirationTime = new Date(Date.now() + hoursToAdd * 60 * 60 * 1000).toISOString().slice(0, -7) + "00Z";
 
 new pulumiservice.TtlSchedule(
-    `${pulumi.getProject}-ttlschedule`,
+    `${pulumi.getProject()}-ttlschedule`,
     {
         organization: pulumi.getOrganization(),
         project: pulumi.getProject(),
@@ -28,7 +28,7 @@ new pulumiservice.TtlSchedule(
 );
 
 new pulumiservice.TeamStackPermission(
-    `${pulumi.getProject}-team-stack-assign`,
+    `${pulumi.getProject()}-${pulumiStackTeam}-team-stack-assign`,
     {
         organization: pulumi.getOrganization(),
         project: pulumi.getProject(),
