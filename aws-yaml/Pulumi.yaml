@@ -19,7 +19,7 @@ resources:
     properties: 
       offsetHours: 1
     options:
-      pluginDownloadURL: https://api.github.com/repos/pulumiverse/pulumi-time/releases/latest
+      pluginDownloadURL: https://api.github.com/repos/pulumiverse/pulumi-time/releases/192619985
   # Create a TTL Schedule resource
   ttl-schedule:
     type: pulumiservice:TtlSchedule
