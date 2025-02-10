@@ -18,6 +18,8 @@ resources:
     type: time:Offset
     properties: 
       offsetHours: 1
+    options:
+      pluginDownloadURL: https://api.github.com/repos/pulumiverse/pulumi-time/releases/latest
   # Create a TTL Schedule resource
   ttl-schedule:
     type: pulumiservice:TtlSchedule
@@ -26,8 +28,6 @@ resources:
       project: ${pulumi.project}
       stack: ${pulumi.stack}
       timestamp: ${timeStamp.rfc3339}
-    options:
-      pluginDownloadURL: https://api.github.com/repos/pulumiverse/pulumi-time/releases/latest
-       
+
 outputs:
   bucketName: ${my-bucket.id}
