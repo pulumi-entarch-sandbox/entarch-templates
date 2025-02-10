@@ -1,0 +1,30 @@
+name:  ${PROJECT}
+description: ${DESCRIPTION}
+runtime: yaml
+template:
+  description: A minimal AWS Pulumi YAML program
+  important: true
+  config:
+    aws:region:
+      description: The AWS region to deploy into
+      default: us-east-1
+
+resources:
+  # Create an AWS resource (S3 Bucket)
+  my-bucket:
+    type: aws:s3:BucketV2
+  # Create a Timestamp resource
+  timeStamp:
+    type: time:Offset
+    properties: 
+      offsetHours: 1
+  # Create a TTL Schedule resource
+  ttl-schedule:
+    type: pulumiservice:TtlSchedule
+    properties:
+      organization: ${pulumi.organization}
+      project: ${pulumi.project}
+      stack: ${pulumi.stack}
+      timestamp: ${timeStamp.rfc3339}
+outputs:
+  bucketName: ${my-bucket.id}
