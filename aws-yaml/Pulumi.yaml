@@ -19,6 +19,7 @@ resources:
     properties: 
       offsetHours: 1
     options:
+      version: "v0.1.1"
       pluginDownloadURL: "https://github.com/pulumiverse/pulumi-time/releases/download/v0.1.1/"
   # Create a TTL Schedule resource
   ttl-schedule:
