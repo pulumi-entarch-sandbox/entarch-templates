@@ -26,5 +26,8 @@ resources:
       project: ${pulumi.project}
       stack: ${pulumi.stack}
       timestamp: ${timeStamp.rfc3339}
+    options:
+      pluginDownloadURL: https://api.github.com/repos/pulumiverse/pulumi-time/releases/latest
+       
 outputs:
   bucketName: ${my-bucket.id}
