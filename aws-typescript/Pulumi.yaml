@@ -8,6 +8,3 @@ template:
     aws:region:
       description: The AWS region to deploy into
       default: us-east-1
-    pulumiStackTeam:
-      description: Pulumi RBAC Team to give admin access to
-      default: DevTeam
